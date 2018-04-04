@@ -29,26 +29,27 @@ CQueue<T>::~CQueue(void) {
 
 template <class T>
 void CQueue<T>::appendTail(const T &node) {
-	while (!stack2.empty()) {
-		stack1.push(stack2.top());
-		stack2.pop();
-	}
 	stack1.push(node);
 }
 
 template <class T>
 T CQueue<T>::deleteHead() {
-	while (!stack1.empty()) {
-		stack2.push(stack1.top());
-		stack1.pop();
+
+	//Two stacks are empty.
+	if (stack1.empty()&&stack2.empty()) 
+		throw runtime_error("Can not delete the element of an empty queue.");
+
+	//If stack2 is empty, push elements from stack1 to stack2.	
+	if (stack2.empty()) {
+		while (!stack1.empty()) {
+			stack2.push(stack1.top());
+			stack1.pop();
+		}
 	}
-	if (!stack2.empty()) {
-		T temp=stack2.top();
-		stack2.pop();
-		return temp;
-	}
-	else {
-		throw runtime_error("Can not delete an element in an empty queue.");
-	}
+
+	//Delete the top element of stack2.
+	T temp=stack2.top();
+	stack2.pop();
+	return temp;
 }
 #endif
