@@ -6,7 +6,7 @@
 
 using namespace std;
 
-template <class T> 
+template <typename T> 
 class CQueue {
 	public:
 		CQueue(void);
@@ -19,20 +19,20 @@ class CQueue {
 		stack<T> stack2;
 };
 
-template <class T>
+template <typename T>
 CQueue<T>::CQueue(void) {
 }
 
-template <class T>
+template <typename T>
 CQueue<T>::~CQueue(void) {
 }
 
-template <class T>
+template <typename T>
 void CQueue<T>::appendTail(const T &node) {
 	stack1.push(node);
 }
 
-template <class T>
+template <typename T>
 T CQueue<T>::deleteHead() {
 
 	//Two stacks are empty.
